@@ -1,0 +1,3 @@
+pasm -b trial.p > /dev/null
+
+gcc  -lprussdrv trial.c -o run
