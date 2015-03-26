@@ -14,15 +14,15 @@ START:
     MOV r1, CTPPR_0
     ST32 r0, r1
 
-    MOV r5, 0 //Current Offset
+    MOV r5, 8 //Current Offset
     MOV r6, 0
-    LBCO r7, CONST_PRUSHAREDRAM, 0, 4
-
-    //Update values in shared ram
+    LBCO r7, CONST_PRUSHAREDRAM, 0, 4	//number of locations
+    LBCO r8, CONST_PRUSHAREDRAM, 4, 4 	//value to be added
+    LBCO r3, CONST_PRUSHAREDRAM, 8, 4	//load shared memory location to write
+	
 READ:
-	LBCO r3, CONST_PRUSHAREDRAM, r5, 4
+	ADD r3, r3, r8
 	ADD r5, r5, 4
-	ADD r3, r3, 0x0F
         SBCO r3, CONST_PRUSHAREDRAM, r5, 4
   	      
 	ADD r6, r6, 1
